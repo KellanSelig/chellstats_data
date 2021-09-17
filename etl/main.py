@@ -9,14 +9,12 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def main(to_bq: bool = False):
-    if to_bq:  # FIXME -> data returned from proclubs currently is not loadable
-        raise NotImplementedError("Currently only loading to JSON is supported")
-
+    logging.info(f"Starting ETL. Data will be written to: {'BigQuery' if to_bq else 'JSON'}")
     proclubs = ProClubs()
     with Records() as records:
         logging.info("Starting requests for match data")
         consume(records.extend(matches) for matches in proclubs.get_all_matches())
-        getattr(records, "to_bigquery" if to_bq else "to_json")()
+        getattr(records, "to_bq" if to_bq else "to_json")()
 
 
 if __name__ == "__main__":

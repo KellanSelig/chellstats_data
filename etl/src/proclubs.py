@@ -1,13 +1,13 @@
 import logging
 import time
 from typing import List, Any, Dict
-
+from furl import furl
 from requests import Session
 from requests.adapters import HTTPAdapter
 from requests.exceptions import HTTPError
 from requests.packages.urllib3.util.retry import Retry
 
-BASEURL = "https://proclubs.ea.com/api/nhl"
+BASEURL = furl("https://proclubs.ea.com/api/nhl")
 HEADERS = {"referer": "www.ea.com"}
 PLATFORMS = ("ps4", "xboxone")
 MATCH_TYPES = ("gameType5", "gameType10", "club_private")
@@ -17,7 +17,7 @@ class ProClubs:
     """Request Data from proclubs api"""
 
     def __init__(self):
-        adapter = HTTPAdapter(max_retries=Retry(total=3, backoff_factor=2))
+        adapter = HTTPAdapter(max_retries=Retry(total=3, backoff_factor=1))
         session = Session()
         session.mount("https://", adapter)
         session.mount("http://", adapter)
@@ -31,13 +31,13 @@ class ProClubs:
         return resp.json()
 
     def request_club_list(self, platform) -> List[int]:
-        url = f"{BASEURL}/seasonRankLeaderboard"
+        url = BASEURL / "seasonRankLeaderboard"
         resp = self._request(url, params={"platform": platform})
         return [r["clubInfo"]["clubId"] for r in resp]
 
     def request_match(self, platform: str, match_type: str, club_id: int, max_result: int = 50) -> List[Dict]:
         params = {"platform": platform, "matchType": match_type, "maxResultCount": max_result, "clubIds": club_id}
-        url = f"{BASEURL}/clubs/matches"
+        url = BASEURL / "clubs/matches"
         try:
             return self._request(url, params=params)
         except HTTPError as e:

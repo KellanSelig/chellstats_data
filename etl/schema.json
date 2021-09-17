@@ -1,0 +1,920 @@
+{
+  "creationTime": "1630942370139",
+  "etag": "EyPYStnAN9dWj3u+sikJlg==",
+  "id": "chellstats-322914:records.matches",
+  "kind": "bigquery#table",
+  "lastModifiedTime": "1630942370139",
+  "location": "US",
+  "numBytes": "6008",
+  "numLongTermBytes": "0",
+  "numRows": "1",
+  "schema": {
+    "fields": [
+      {
+        "fields": [
+          {
+            "mode": "REQUIRED",
+            "name": "created_at_dt",
+            "type": "TIMESTAMP"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "club",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "toiseconds",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "sktakeaways",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshots",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshotonnetpct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshotattempts",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshg",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "sksaucerpasses",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skplusmin",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpasspct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshotpct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpasses",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skhits",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skgwg",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpossession",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "playerLevel",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skgiveaways",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skfow",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpim",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skfol",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "posSorted",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skassists",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "scoreString",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "scoreRaw",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ratingOffense",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpkclearzone",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glshots",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ratingDefense",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skfopct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glga",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ranktierassetid",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glbrksavepct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "removedReason",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "rankpoints",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "position",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "opponentClubId",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "opponentScore",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpenaltiesdrawn",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skdeflections",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glbrksaves",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "isGuest",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glsavepct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skbs",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpassattempts",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpokechecks",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glsoperiods",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skppg",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ratingTeamplay",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "teamSide",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpensavepct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "pNhlOnlineGameType",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skinterceptions",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "memberString",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpenshots",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpkclearzone",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "result",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpensaves",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "score",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glgaa",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "class",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "gldsaves",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "player_dnf",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skgoals",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "toi",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glsaves",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glbrkshots",
+            "type": "INTEGER"
+          }
+        ],
+        "mode": "REPEATED",
+        "name": "aggregate",
+        "type": "RECORD"
+      },
+      {
+        "fields": [
+          {
+            "mode": "NULLABLE",
+            "name": "club",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "goalsAgainst",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "goals",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "winnerByDnf",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "toa",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "teamSide",
+            "type": "INTEGER"
+          },
+          {
+            "fields": [
+              {
+                "fields": [
+                  {
+                    "mode": "NULLABLE",
+                    "name": "useBaseAsset",
+                    "type": "INTEGER"
+                  },
+                  {
+                    "mode": "NULLABLE",
+                    "name": "crestAssetId",
+                    "type": "INTEGER"
+                  },
+                  {
+                    "mode": "NULLABLE",
+                    "name": "isCustomTeam",
+                    "type": "INTEGER"
+                  }
+                ],
+                "mode": "NULLABLE",
+                "name": "customKit",
+                "type": "RECORD"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "teamId",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "clubId",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "regionId",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "name",
+                "type": "STRING"
+              }
+            ],
+            "mode": "NULLABLE",
+            "name": "details",
+            "type": "RECORD"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "shots",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "scoreString",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ppg",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "passc",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "score",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "passa",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "cNhlOnlineGameType",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "opponentClubId",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "opponentScore",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "winnerByGoalieDnf",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "teamArtAbbr",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "result",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "opponentTeamArtAbbr",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "memberString",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "losses",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ppo",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "gfraw",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "clubDivision",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "garaw",
+            "type": "INTEGER"
+          }
+        ],
+        "mode": "REPEATED",
+        "name": "clubs",
+        "type": "RECORD"
+      },
+      {
+        "fields": [
+          {
+            "mode": "NULLABLE",
+            "name": "player",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "club",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "playername",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "toiseconds",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "sktakeaways",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshots",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshotonnetpct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshotattempts",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshg",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "sksaucerpasses",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skplusmin",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpasspct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skshotpct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpasses",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skhits",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skgwg",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpossession",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "playerLevel",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skgiveaways",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skfow",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpim",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skfol",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "posSorted",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skassists",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "scoreString",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "scoreRaw",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ratingOffense",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpkclearzone",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glshots",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ratingDefense",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skfopct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glga",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ranktierassetid",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glbrksavepct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "removedReason",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "rankpoints",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "position",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "opponentClubId",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "opponentScore",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpenaltiesdrawn",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skdeflections",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glbrksaves",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "isGuest",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glsavepct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skbs",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpassattempts",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpokechecks",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glsoperiods",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skppg",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "ratingTeamplay",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "teamSide",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpensavepct",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "pNhlOnlineGameType",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skinterceptions",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "memberString",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpenshots",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skpkclearzone",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "result",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glpensaves",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "score",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glgaa",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "class",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "gldsaves",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "player_dnf",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "skgoals",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "toi",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glsaves",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "glbrkshots",
+            "type": "INTEGER"
+          }
+        ],
+        "mode": "REPEATED",
+        "name": "players",
+        "type": "RECORD"
+      },
+      {
+        "fields": [
+          {
+            "mode": "NULLABLE",
+            "name": "unit",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "number",
+            "type": "INTEGER"
+          }
+        ],
+        "mode": "NULLABLE",
+        "name": "timeAgo",
+        "type": "RECORD"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "timestamp",
+        "type": "TIMESTAMP"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "matchId",
+        "type": "INTEGER"
+      }
+    ]
+  },
+  "selfLink": "https://bigquery.googleapis.com/bigquery/v2/projects/chellstats-322914/datasets/records/tables/matches",
+  "tableReference": {
+    "datasetId": "records",
+    "projectId": "chellstats-322914",
+    "tableId": "matches"
+  },
+  "type": "TABLE"
+}
+kellan_selig@cloudshell:~ (chellstats-322914)$

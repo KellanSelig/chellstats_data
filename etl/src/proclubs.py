@@ -6,6 +6,7 @@ from requests import Session  # type: ignore
 from requests.adapters import HTTPAdapter
 from requests.exceptions import HTTPError
 from requests.packages.urllib3.util.retry import Retry
+
 from etl.src.settings import settings
 
 

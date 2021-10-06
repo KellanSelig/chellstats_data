@@ -20,4 +20,4 @@ echo
 
 echo "Running tests..."
 # etl tests
-PYTHONPATH=etl/app pytest ./tests/etl -s
+PYTHONPATH=. pytest ./tests/etl -s

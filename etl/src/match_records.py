@@ -5,6 +5,7 @@ from typing import Any, Dict, Iterable, List, Union
 
 from pydantic import BaseModel
 from pydantic.json import pydantic_encoder
+
 from etl.src.load_methods import BigQueryLoader, JSONLoader, LoaderConfig, get_loader
 from etl.src.settings import settings
 

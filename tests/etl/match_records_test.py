@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from src.match_records import MatchRecords
+from etl.src import match_records
 
 
 def test_transform() -> None:
@@ -10,5 +10,5 @@ def test_transform() -> None:
         raw = json.load(f)
         expected = json.load(e)
 
-    transformed = MatchRecords.transform_record(raw)
+    transformed = match_records.MatchRecords.transform_record(raw)
     assert transformed == expected, "transformed and expected values do not "

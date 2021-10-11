@@ -12,9 +12,10 @@ logging.basicConfig(level=logging.INFO)
 @no_type_check
 def main(write_method: str) -> None:
     logging.info(f"Starting ETL. Data will be written using {write_method}")
-    with ProClubs() as service, MatchRecords() as records:
+    records = MatchRecords()
+    with ProClubs() as service:
         consume(records.extend(matches) for matches in service.get_all_matches())
-        records.write(write_method)
+    records.write(write_method)
 
 
 if __name__ == "__main__":

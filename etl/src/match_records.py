@@ -21,12 +21,6 @@ class MatchRecords(BaseModel):
     __data: List[Dict[str, Any]] = []
     created_at_dt: datetime = datetime.now()
 
-    def __enter__(self):  # type: ignore
-        return self
-
-    def __exit__(self, *exc):  # type: ignore
-        return False
-
     def extend(self, records: Union[Iterable, Dict]) -> None:
         if isinstance(records, Dict):
             records = [records]

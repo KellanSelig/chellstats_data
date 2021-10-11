@@ -11,9 +11,7 @@ from etl.src.settings import settings
 
 load_methods = {
     "to_json": LoaderConfig(method=JSONLoader, args=[settings.local_json_path]),
-    "to_bq": LoaderConfig(
-        method=BigQueryLoader, args=[settings.table_name, settings.dataset], kwargs=settings.bq_load_args
-    ),
+    "to_bq": LoaderConfig(method=BigQueryLoader, args=[settings.table], kwargs=settings.bq_load_args),
 }
 
 

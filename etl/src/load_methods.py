@@ -4,7 +4,6 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Type
 
-import google.auth  # type: ignore
 from google.cloud import bigquery  # type: ignore
 from pydantic import BaseModel
 
@@ -41,14 +40,12 @@ class BigQueryLoader(LoadMethod):
 
     def __init__(
         self,
-        table_name: str,
-        dataset: str,
-        project: Optional[str] = None,
+        table: str,
         client: Optional[bigquery.Client] = None,
         **kwargs: Any,
     ):
         self.client = client or bigquery.Client()
-        self.table = self.client.get_table(f"{project or google.auth.default()[1]}.{dataset}.{table_name}")
+        self.table = self.client.get_table(table)
         self.job_config = bigquery.LoadJobConfig(schema=self.table.schema, **kwargs)
         super().__init__(f"`{self.table.project}:{self.table.dataset_id}.{self.table.table_id}`")
 

@@ -6,3 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
       target: etl
+    volumes:
+      - $HOME/.config/gcloud:/root/.config/gcloud:ro
+    environment:
+      TABLE_NAME: ${TABLE_NAME}
+      DATASET: ${DATASET}
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT}
+
+

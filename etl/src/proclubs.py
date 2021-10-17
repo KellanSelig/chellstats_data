@@ -13,17 +13,12 @@ from etl.src.settings import settings
 class ProClubs:
     """Request Data from proclubs api"""
 
-    def __enter__(self):  # type: ignore
-        adapter = HTTPAdapter(max_retries=Retry(total=3, backoff_factor=1))
+    def __init__(self):  # type: ignore
         session = Session()
+        adapter = HTTPAdapter(max_retries=Retry(total=3, backoff_factor=1))
         session.mount("https://", adapter)
         session.mount("http://", adapter)
         self.session = session
-        return self
-
-    def __exit__(self, *exc):  # type: ignore
-        self.session.close()
-        return False
 
     def _request(self, url: str, params: Dict = None, **kwargs: Any) -> Any:
         logging.info(f"Making request to {url} using params: {params}")

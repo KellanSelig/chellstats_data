@@ -25,12 +25,13 @@ docker tag chellstats_data_etl "$TAG"
 docker push "$TAG"
 gcloud run deploy chellstats-data-etl  \
     --no-allow-unauthenticated \
+    --max-instances=1 \
+    --memory=2Gi \
     --image="$TAG" \
     --args=--method=to_bq \
-    --ingress=internal \
+    --ingress=all \
     --timeout=900 \
     --region=us-east1
 
-
 # To avoid incurring charges, we delete the repository once we are finished deploying
-gcloud artifacts repositories delete $REPOSITORY --location=us-east1
+gcloud artifacts repositories delete $REPOSITORY --location=us-east1 --quiet

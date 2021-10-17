@@ -11,10 +11,10 @@ logging.basicConfig(level=logging.INFO)
 
 @no_type_check
 def main(write_method: str) -> None:
-    logging.info(f"Starting ETL. Data will be written using {write_method}")
     records = MatchRecords()
-    with ProClubs() as service:
-        consume(records.extend(matches) for matches in service.get_all_matches())
+    service = ProClubs()
+    logging.info(f"Starting ETL. Data will be written using {write_method}")
+    consume(records.extend(matches) for matches in service.get_all_matches())
     records.write(write_method)
 
 
@@ -30,16 +30,16 @@ if __name__ == "__main__":
     if args.local:
         main(args.method)
     else:
-        # If we are not running locally, we need to be able to listen and respond on a port.
+        # If we are not running locally, we need to be able to listen and respond on a port to use cloud run.
         # We set up a wrapper using fast-api to do this
-        # TODO - Clean this up and/or integrate with larget API app
+        # TODO - convert from CLI to just a webapp
         import uvicorn  # type: ignore
         from fastapi import FastAPI
 
         app = FastAPI()
 
         @app.post("/")
-        def run_etl(request: Any) -> str:
+        def run_etl(payload: Any = None) -> str:
             """Wrap function around an endpoint to use with cloud run."""
             main(args.method)
             return "Done"

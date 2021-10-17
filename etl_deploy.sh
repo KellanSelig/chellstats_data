@@ -28,7 +28,6 @@ gcloud run deploy chellstats-data-etl  \
     --max-instances=1 \
     --memory=2Gi \
     --image="$TAG" \
-    --args=--method=to_bq \
     --ingress=all \
     --timeout=900 \
     --region=us-east1

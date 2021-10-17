@@ -18,15 +18,15 @@ To run:
 ```bash
 conda env update -f environment.yml --prune
 conda activate chellstats_data
-python -m etl [--method]
+uvicorn etl.__main__:app --reload
 ```
 ### Docker Commands
 ```bash
 # build specific service container
 docker-compose build [service]
 
-# run service with optional --method arg
-docker-compose run [service] [--method]
+# run service 
+docker-compose run [service]
 
 # stop service
 docker-compose stop [service]

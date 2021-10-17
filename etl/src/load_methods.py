@@ -7,6 +7,8 @@ from typing import Any, Dict, Iterable, List, Optional, Type
 from google.cloud import bigquery  # type: ignore
 from pydantic import BaseModel
 
+from etl.src.settings import settings
+
 
 class LoadMethod(ABC):
     def __init__(self, destination: Any, *args: Any, **kwargs: Any):
@@ -54,7 +56,7 @@ class BigQueryLoader(LoadMethod):
         self.client.load_table_from_json(data, self.table, job_config=self.job_config).result()
 
 
-class LoaderConfig(BaseModel):
+class LoadConfig(BaseModel):
     method: Type[LoadMethod]
     args: List = []
     kwargs: Dict = {}
@@ -67,8 +69,7 @@ class InvalidLoadMethod(Exception):
     pass
 
 
-def get_loader(method: str, load_method_fac: Dict[str, LoaderConfig]) -> LoadMethod:
-    try:
-        return load_method_fac[method].initialize()
-    except KeyError:
-        raise InvalidLoadMethod(f"{method} is not in valid methods: {load_method_fac.keys()}")
+load_methods = {
+    "to_json": LoadConfig(method=JSONLoader, args=[settings.local_json_path]),
+    "to_bq": LoadConfig(method=BigQueryLoader, args=[settings.table], kwargs=settings.bq_load_args),
+}

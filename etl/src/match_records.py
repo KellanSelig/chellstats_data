@@ -1,37 +1,29 @@
 import json
 import logging
 from datetime import datetime
-from typing import Any, Dict, Iterable, List, Union
+from typing import Any, Dict, Iterable, Union
 
-from pydantic import BaseModel
-from pydantic.json import pydantic_encoder
-
-from etl.src.load_methods import BigQueryLoader, JSONLoader, LoaderConfig, get_loader
-from etl.src.settings import settings
-
-load_methods = {
-    "to_json": LoaderConfig(method=JSONLoader, args=[settings.local_json_path]),
-    "to_bq": LoaderConfig(method=BigQueryLoader, args=[settings.table], kwargs=settings.bq_load_args),
-}
+from etl.src.load_methods import load_methods
 
 
-class MatchRecords(BaseModel):
-    __data: List[Dict[str, Any]] = []
-    created_at_dt: datetime = datetime.now()
+class MatchRecords:
+    def __init__(self) -> None:
+        self.__data: list = []
+        self.__created_at_dt: datetime = datetime.now()
 
     def extend(self, records: Union[Iterable, Dict]) -> None:
         if isinstance(records, Dict):
             records = [records]
         for r in records:
-            r["created_at_dt"] = self.created_at_dt.isoformat()
+            r["created_at_dt"] = self.__created_at_dt.isoformat()
             self.__data.append(self.transform_record(r))
 
     @property
     def data(self) -> Any:
-        return json.loads(json.dumps(self.__data, default=pydantic_encoder))
+        return json.loads(json.dumps(self.__data))
 
     def write(self, method: str) -> None:
-        loader = get_loader(method, load_methods)
+        loader = load_methods[method].initialize()
         loader.write(self.data)
         logging.info(f"Records written successfully to {loader.destination}")
 

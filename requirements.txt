@@ -1,5 +1,4 @@
 bigquery==0.0.15
-black==21.7b0
 fastapi==0.68.1
 furl==2.1.2
 google-cloud-bigquery==2.23.2

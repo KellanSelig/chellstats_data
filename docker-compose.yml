@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  etl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: etl
+    volumes:
+      - $HOME/.config/gcloud:/root/.config/gcloud:ro
+    ports:
+      - "8080:8080"
+
+

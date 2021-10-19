@@ -1,43 +1,39 @@
 import logging
 import time
-from typing import List, Any, Dict
-from furl import furl
-from requests import Session
+from typing import Any, Dict, Iterable, List
+
+from requests import Session  # type: ignore
 from requests.adapters import HTTPAdapter
 from requests.exceptions import HTTPError
 from requests.packages.urllib3.util.retry import Retry
 
-BASEURL = furl("https://proclubs.ea.com/api/nhl")
-HEADERS = {"referer": "www.ea.com"}
-PLATFORMS = ("ps4", "xboxone")
-MATCH_TYPES = ("gameType5", "gameType10", "club_private")
+from etl.src.settings import settings
 
 
 class ProClubs:
     """Request Data from proclubs api"""
 
-    def __init__(self):
-        adapter = HTTPAdapter(max_retries=Retry(total=3, backoff_factor=1))
+    def __init__(self):  # type: ignore
         session = Session()
+        adapter = HTTPAdapter(max_retries=Retry(total=3, backoff_factor=1))
         session.mount("https://", adapter)
         session.mount("http://", adapter)
-
         self.session = session
 
-    def _request(self, url: str, params=None, **kwargs) -> Any:
-        logging.info(params)
-        resp = self.session.get(url, headers=HEADERS, params=params, **kwargs)
+    def _request(self, url: str, params: Dict = None, **kwargs: Any) -> Any:
+        logging.info(f"Making request to {url} using params: {params}")
+        resp = self.session.get(url, headers=settings.HEADERS, params=params, **kwargs)
         resp.raise_for_status()
         return resp.json()
 
-    def request_club_list(self, platform) -> List[int]:
-        url = BASEURL / "seasonRankLeaderboard"
+    def request_club_list(self, platform: str) -> List[int]:
+        url = settings.BASEURL / "seasonRankLeaderboard"
         resp = self._request(url, params={"platform": platform})
         return [r["clubInfo"]["clubId"] for r in resp]
 
-    def request_match(self, platform: str, match_type: str, club_id: int, max_result: int = 50) -> List[Dict]:
+    def request_match(self, platform: str, match_type: str, club_id: int, max_result: int = 50) -> Any:
         params = {"platform": platform, "matchType": match_type, "maxResultCount": max_result, "clubIds": club_id}
-        url = BASEURL / "clubs/matches"
+        url = settings.BASEURL / "clubs/matches"
         try:
             return self._request(url, params=params)
         except HTTPError as e:
@@ -49,9 +45,10 @@ class ProClubs:
             else:
                 raise e
 
-    def get_all_matches(self):
-        for platform in PLATFORMS:
+    def get_all_matches(self) -> Iterable[List[Dict]]:
+        logging.info("Starting requests for match data")
+        for platform in settings.PLATFORMS:
             clubs = self.request_club_list(platform)
             for club_id in clubs:
-                for match_type in MATCH_TYPES:
+                for match_type in settings.MATCH_TYPES:
                     yield self.request_match(platform, match_type, club_id)

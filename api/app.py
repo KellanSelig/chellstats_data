@@ -4,5 +4,5 @@ app = FastAPI()
 
 
 @app.route("/")
-def ping():
+def ping() -> str:
     return "Hello World"

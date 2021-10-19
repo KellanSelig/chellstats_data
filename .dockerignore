@@ -210,3 +210,15 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
+# dockerignore specific
+Dockerfile
+docker-compose.yml
+.flake8
+.isort.cfg
+run_checks.sh
+environment.yml
+mypy.ini
+pyproject.toml
+README.md
+requirements_dev.txt

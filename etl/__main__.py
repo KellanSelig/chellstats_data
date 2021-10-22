@@ -6,7 +6,7 @@ from etl.src.match_records import MatchRecords
 from etl.src.models import Request
 from etl.src.proclubs import ProClubs
 from util.consume import consume
-
+from etl.src.load_methods import load_methods
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
@@ -16,6 +16,6 @@ app = FastAPI()
 def main(req: Request) -> str:
     records = MatchRecords()
     service = ProClubs()
-    consume(records.extend(matches) for matches in service.get_all_matches())  # type: ignore
-    records.write(req.method)
+    consume(records.append(match) for match in service.get_all_matches())  # type: ignore
+    records.write(load_methods[req.method])
     return "Done"

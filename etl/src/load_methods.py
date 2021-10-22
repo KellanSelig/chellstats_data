@@ -2,15 +2,17 @@ import json
 import logging
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Type
+from typing import Any, Dict, Iterable, List, Type
 
-from google.cloud import bigquery  # type: ignore
+from google.cloud.bigquery import Client, WriteDisposition, QueryJob, LoadJobConfig  # type: ignore
 from pydantic import BaseModel
 
 from etl.src.settings import settings
+from util.consume import consume
 
 
 class LoadMethod(ABC):
+    """Abstract base class for load methods."""
     def __init__(self, destination: Any, *args: Any, **kwargs: Any):
         self.destination = destination
 
@@ -23,7 +25,7 @@ class LoadMethod(ABC):
 
 
 class JSONLoader(LoadMethod):
-    """Load data to local JSON file."""
+    """Write Newline Delimited JSON to a file."""
 
     def __init__(self, path: str):
         destination = Path(path).resolve()
@@ -32,28 +34,35 @@ class JSONLoader(LoadMethod):
     def write(self, data: Iterable) -> None:
         logging.info(f"Writing records to {self.destination}")
         with self.destination.open("w") as f:
-            for row in data:
-                f.write(json.dumps(row))
-                f.write("\n")
+            consume(f.write(json.dumps(row) + "\n") for row in data)
 
 
-class BigQueryLoader(LoadMethod):
-    """Write data to Bigquery Table."""
+class BigQueryUpsertLoader(LoadMethod):
+    """Upsert records into a BigQuery table."""
 
-    def __init__(
-        self,
-        table: str,
-        client: Optional[bigquery.Client] = None,
-        **kwargs: Any,
-    ):
-        self.client = client or bigquery.Client()
-        self.table = self.client.get_table(table)
-        self.job_config = bigquery.LoadJobConfig(schema=self.table.schema, **kwargs)
-        super().__init__(f"`{self.table.project}:{self.table.dataset_id}.{self.table.table_id}`")
+    def __init__(self, table: str, temp_table: str, **kwargs: Any):
+        super().__init__(table)
+        self.table = table
+        self.temp_table = temp_table
+        self.client = Client()
+        self.job_config = LoadJobConfig(
+            schema=self.client.get_table(table).schema,
+            ignore_unknown_values=True,
+            write_disposition=WriteDisposition.WRITE_TRUNCATE,
+            **kwargs
+        )
 
     def write(self, data: Iterable) -> None:
-        logging.info(f"Loading records to Bigquery table: {self.destination}")
-        self.client.load_table_from_json(data, self.table, job_config=self.job_config).result()
+        logging.info(f"Loading records to temporary table: {self.temp_table}")
+        self.client.load_table_from_json(data, self.temp_table, job_config=self.job_config).result()
+        job = self._merge()
+        job.result()
+        logging.info(job.dml_stats)
+
+    def _merge(self) -> QueryJob:
+        logging.info(f"Merging records to Bigquery table: {self.destination}")
+        dml = settings.jinja_env.get_template("merge.sql").render(table=self.table, temp=self.temp_table)
+        return self.client.query(dml)
 
 
 class LoadConfig(BaseModel):
@@ -71,5 +80,5 @@ class InvalidLoadMethod(Exception):
 
 load_methods = {
     "to_json": LoadConfig(method=JSONLoader, args=[settings.local_json_path]),
-    "to_bq": LoadConfig(method=BigQueryLoader, args=[settings.table], kwargs=settings.bq_load_args),
+    "to_bq": LoadConfig(method=BigQueryUpsertLoader, args=[settings.match_table, settings.temp_table]),
 }

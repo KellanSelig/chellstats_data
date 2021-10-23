@@ -32,7 +32,7 @@ class ProClubs:
         for r in resp:
             yield r["clubInfo"]["clubId"]
 
-    def request_match(self, platform: str, match_type: str, club_id: int, max_result: int = 50) -> Any:
+    def request_match(self, platform: str, match_type: str, club_id: int, max_result: int = 30) -> Any:
         """Request detailed match information"""
         params = {"platform": platform, "matchType": match_type, "maxResultCount": max_result, "clubIds": club_id}
         url = settings.BASEURL / "clubs/matches"

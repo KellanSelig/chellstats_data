@@ -2,11 +2,12 @@ import logging
 
 from fastapi import FastAPI
 
+from etl.src.load_methods import load_methods
 from etl.src.match_records import MatchRecords
 from etl.src.models import Request
 from etl.src.proclubs import ProClubs
 from util.consume import consume
-from etl.src.load_methods import load_methods
+
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()

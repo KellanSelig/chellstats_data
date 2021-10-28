@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Type
 
-from google.cloud.bigquery import Client, WriteDisposition, QueryJob, LoadJobConfig  # type: ignore
+from google.cloud.bigquery import Client, LoadJobConfig, QueryJob, WriteDisposition  # type: ignore
 from pydantic import BaseModel
 
 from etl.src.settings import settings
@@ -13,6 +13,7 @@ from util.consume import consume
 
 class LoadMethod(ABC):
     """Abstract base class for load methods."""
+
     def __init__(self, destination: Any, *args: Any, **kwargs: Any):
         self.destination = destination
 
@@ -49,7 +50,7 @@ class BigQueryUpsertLoader(LoadMethod):
             schema=self.client.get_table(table).schema,
             ignore_unknown_values=True,
             write_disposition=WriteDisposition.WRITE_TRUNCATE,
-            **kwargs
+            **kwargs,
         )
 
     def write(self, data: Iterable) -> None:

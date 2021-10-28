@@ -1,9 +1,10 @@
+import uuid
+from pathlib import Path
+
 import google.auth  # type: ignore
 from furl import furl as Url  # type: ignore
-from pydantic import BaseSettings
-import uuid
 from jinja2 import Environment, FileSystemLoader
-from pathlib import Path
+from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):

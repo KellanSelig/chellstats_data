@@ -1,10 +1,15 @@
+import uuid
+from pathlib import Path
+
 import google.auth  # type: ignore
 from furl import furl as Url  # type: ignore
-from google.cloud.bigquery import TimePartitioning, TimePartitioningType, WriteDisposition  # type: ignore
+from jinja2 import Environment, FileSystemLoader
 from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
+    jinja_env = Environment(loader=FileSystemLoader(Path("etl/sql").resolve()))
+
     # proclub settings
     BASEURL: Url = Url("https://proclubs.ea.com/api/nhl")
     HEADERS: dict = {"referer": "www.ea.com"}
@@ -15,18 +20,15 @@ class Settings(BaseSettings):
     local_json_path: str = "proclubs_match_data.json"
 
     # BigQuery Settings
-    table_name: str = "matches"
-    dataset: str = "records"
     project: str = google.auth.default()[1]
-    bq_load_args: dict = {
-        "write_disposition": WriteDisposition.WRITE_APPEND,
-        "time_partitioning": TimePartitioning(TimePartitioningType.DAY, field="created_at_dt"),
-        "ignore_unknown_values": True,
-    }
 
     @property
-    def table(self) -> str:
-        return f"{self.project}.{self.dataset}.{self.table_name}"
+    def match_table(self) -> str:
+        return f"{self.project}.records.matches"
+
+    @property
+    def temp_table(self) -> str:
+        return f"{self.project}.tmp.matches_{uuid.uuid4().int}"
 
 
 settings = Settings()

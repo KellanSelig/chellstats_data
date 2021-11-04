@@ -29,7 +29,7 @@ gcloud run deploy chellstats-data-etl  \
     --memory=2Gi \
     --image="$TAG" \
     --ingress=all \
-    --timeout=900 \
+    --timeout=1800 \
     --region=us-east1
 
 # To avoid incurring charges, we delete the repository once we are finished deploying
